@@ -1,32 +1,48 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <p>
-      For a guide and recipes on how to configure / customize this project,<br>
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
-    </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank" rel="noopener">babel</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank" rel="noopener">eslint</a></li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank" rel="noopener">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
-      <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
-      <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
-      <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
-      <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
-    </ul>
+  <div class="record">
+    <header class="record__header">
+      <div class="record__header-left">
+        <p>Phòng cảnh sát giao thông Đà Nẵng</p>
+        <p>Trạm CSGT cửa ô hòa hiệp</p>
+        <p>Số:19C126304/BB-VPHC</p>
+        <p class="permission">
+          <span class="flag">Quyền: </span>
+          <el-input v-model="dataSet.value1"/>
+        </p>
+      </div>
+      <div class="record__header-right">
+        <span>Mẫu số 01/QĐ-XPKLBB <br/>Ban hành kèm theo Thông tư số 07/2019/TT-BCA <br/> ngày 20/3/2019</span>
+        <p>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</p>
+        <p>Độc lập - Tự do - Hạnh phúc</p>
+        <p>
+          <i>Hà Nội, ngày 28 tháng 09 năm 2021</i>
+        </p>
+      </div>
+    </header>
+    <main class="record__main">
+      <div class="record__main-title">
+        <p>Quyết định</p>
+        <p>Xử phạt vi phạm hành chính theo thủ tục xử phạt không lập biên bản</p>
+      </div>
+      <div class="record__main-content">
+        <p>Căn cứ Điều 56 Luật xử lý vi phạm hành chính;</p>
+        <div class="based-on">
+          <span class="flag">Căn cứ <b class="required">*</b></span>
+          <el-autocomplete
+              class="inline-input"
+              v-model="dataSet.value2"
+              :fetch-suggestions="querySearch"
+          ></el-autocomplete>
+        </div>
+          <p>Căn cứ hồ sơ vụ vi phạm do cơ quan tiến hành tố tụng hình sự chuyển đến (nếu có);</p>
+          <p>Căn cứ kết quả xác minh và các tài liệu có trong hồ sơ;</p>
+          <div class="violation">
+            <span class="flag">Căn cứ quyết định về việc giao quyền xử phạt vi phạm hành chính số</span>
+            <el-input v-model="dataSet.value3"/>
+          </div>
+          <p>ngày</p>
+      </div>
+    </main>
   </div>
 </template>
 
@@ -35,24 +51,39 @@ export default {
   name: 'HelloWorld',
   props: {
     msg: String
+  },
+  data: () => {
+    return {
+      dataSet:{
+        value1: '',
+        value2: '',
+        value3: '',
+        value4: '',
+        value5: '',
+      },
+      listData: [
+        {
+          value: 'Quyết định 1'
+        },
+        {
+          value: 'Quyết định 2'
+        },
+        {
+          value: 'Quyết định 3'
+        },
+
+      ]
+    }
+  },
+  methods: {
+    querySearch(queryString, cb) {
+      cb(this.listData);
+    }
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
+<style lang="scss" scoped>
+@import "HelloWorld";
 </style>
