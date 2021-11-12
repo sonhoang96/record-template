@@ -6,7 +6,7 @@
         <p>Trạm CSGT cửa ô hòa hiệp</p>
         <p>Số:19C126304/BB-VPHC</p>
         <p class="permission">
-          <span class="flag">Quyền: </span>
+          <span class="flag">Quyển số: </span>
           <el-input v-model="dataSet.value1"/>
         </p>
       </div>
@@ -31,16 +31,56 @@
           <el-autocomplete
               class="inline-input"
               v-model="dataSet.value2"
-              :fetch-suggestions="querySearch"
+              :fetch-suggestions="querySearch1"
           ></el-autocomplete>
         </div>
-          <p>Căn cứ hồ sơ vụ vi phạm do cơ quan tiến hành tố tụng hình sự chuyển đến (nếu có);</p>
-          <p>Căn cứ kết quả xác minh và các tài liệu có trong hồ sơ;</p>
-          <div class="violation">
-            <span class="flag">Căn cứ quyết định về việc giao quyền xử phạt vi phạm hành chính số</span>
-            <el-input v-model="dataSet.value3"/>
-          </div>
-          <p>ngày</p>
+        <p>Căn cứ hồ sơ vụ vi phạm do cơ quan tiến hành tố tụng hình sự chuyển đến (nếu có);</p>
+        <p>Căn cứ kết quả xác minh và các tài liệu có trong hồ sơ;</p>
+        <div class="violation">
+          <span class="flag">Căn cứ quyết định về việc giao quyền xử phạt vi phạm hành chính số</span>
+          <el-input v-model="dataSet.value3"/>
+        </div>
+        <div class="date-time">
+          <span class="flag">ngày</span>
+          <el-date-picker v-model="dataSet.value4" type="date"></el-date-picker>
+          <span>(nếu có);</span>
+        </div>
+        <div class="indentity">
+          <span class="flag">Tôi <b class="required">*</b></span>
+          <el-autocomplete
+              class="inline-input"
+              v-model="dataSet.value5"
+              :fetch-suggestions="querySearch2"
+          ></el-autocomplete>
+
+          <span class="flag">Cấp bậc</span>
+          <el-autocomplete
+              disabled
+              class="inline-input"
+              v-model="dataSet.value6"
+              :fetch-suggestions="querySearch3"
+          ></el-autocomplete>
+
+          <span class="flag">Chức vụ</span>
+          <el-autocomplete
+              disabled
+              class="inline-input"
+              v-model="dataSet.value7"
+              :fetch-suggestions="querySearch4"
+          ></el-autocomplete>
+
+          <span class="flag">Đơn vị</span>
+          <el-autocomplete
+              disabled
+              class="inline-input"
+              v-model="dataSet.value8"
+              :fetch-suggestions="querySearch5"
+          ></el-autocomplete>
+        </div>
+
+        <div class="record__main-title">
+          <p>Quyết định:</p>
+        </div>
       </div>
     </main>
   </div>
@@ -54,14 +94,17 @@ export default {
   },
   data: () => {
     return {
-      dataSet:{
+      dataSet: {
         value1: '',
         value2: '',
         value3: '',
         value4: '',
         value5: '',
+        value6: '',
+        value7: '',
+        value8: '',
       },
-      listData: [
+      listData1: [
         {
           value: 'Quyết định 1'
         },
@@ -71,14 +114,72 @@ export default {
         {
           value: 'Quyết định 3'
         },
+      ],
+      listData2: [
+        {
+          value: 'Hoàng Tử Gió'
+        },
+        {
+          value: 'Chương Tam Phong'
+        },
+        {
+          value: 'Hồng Lâu Mộng'
+        },
+      ],
+      listData3: [
+        {
+          value: 'Thiếu dương'
+        },
+        {
+          value: 'Thiếu âm'
+        },
+        {
+          value: 'Thái tuế'
+        },
 
-      ]
+      ],
+      listData4: [
+        {
+          value: 'Thầy tu mù'
+        },
+        {
+          value: 'Đứa con của gió'
+        },
+        {
+          value: 'Anh bán chiếu'
+        },
+
+      ],
+      listData5: [
+        {
+          value: 'Đội CSGT Đường Lùi số 1'
+        },
+        {
+          value: 'Đội CSGT Đường Đường Chính Chính'
+        },
+        {
+          value: 'Đội CSGT Đường Phèn Số 2'
+        },
+
+      ],
     }
   },
   methods: {
-    querySearch(queryString, cb) {
-      cb(this.listData);
-    }
+    querySearch1(queryString, cb) {
+      cb(this.listData1);
+    },
+    querySearch2(queryString, cb) {
+      cb(this.listData2);
+    },
+    querySearch3(queryString, cb) {
+      cb(this.listData3);
+    },
+    querySearch4(queryString, cb) {
+      cb(this.listData4);
+    },
+    querySearch5(queryString, cb) {
+      cb(this.listData5);
+    },
   }
 }
 </script>

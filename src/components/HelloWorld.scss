@@ -38,7 +38,7 @@
           border-bottom: 1px solid;
         }
 
-        &:nth-child(3) {
+        &:nth-child(3), &:nth-child(4) {
           text-transform: inherit;
         }
       }
@@ -64,7 +64,7 @@
   .record__main {
     grid-area: main;
 
-    .record__main-title {
+    .record__main-title{
       margin-bottom: 20px;
 
       p {
@@ -114,26 +114,94 @@
       }
 
       .violation {
+        display: inline-block;
+
         span {
           &:after {
             left: 101%;
-            width: 300px;
+            width: 100px;
           }
         }
-        ::v-deep input{
-          width: 300px;
-          padding: 0 5px;
+
+        ::v-deep .el-input {
+          width: 100px;
+
+          input {
+            padding: 0 5px;
+          }
         }
       }
+
+      .date-time {
+        display: inline-block;
+        margin-left: 5px;
+
+        span {
+          &:after {
+            left: 105%;
+            width: 100px;
+          }
+        }
+
+        ::v-deep .el-input {
+          width: 110px;
+
+          input {
+            padding: 0 10px;
+          }
+        }
+
+        ::v-deep .el-input__prefix {
+          display: none;
+        }
+
+        ::v-deep .el-input__icon {
+          line-height: 20px;
+        }
+
+      }
+
+      .indentity {
+        margin: 10px 0;
+
+        span {
+          &:after {
+            left: 105%;
+            width: 130px;
+          }
+        }
+
+        ::v-deep .el-input {
+          width: 140px;
+
+          input {
+            padding: 0 3px;
+          }
+        }
+      }
+
+      .record__main-title-2{
+        text-align: center;
+      }
+    }
+
+    //config p tag
+    p {
+      margin: 10px 0;
     }
   }
 
   // General style
-  ::v-deep input {
-    border: none;
-    outline: none;
-    height: 20px;
-    padding: 0;
+  ::v-deep .el-input {
+    width: 100px;
+
+    input {
+      width: inherit;
+      border: none;
+      outline: none;
+      height: 20px;
+      padding: 0;
+    }
   }
 
   .flag {
